@@ -1,76 +1,59 @@
 
-# Mini Assignment 1 — Tech News 
+---
 
-## What you’ll build (only 3 routes)
+## 📝 Main Folder README (Both Assignments)
 
-| Route         | Rendering                         | What it shows                                                                           | API used                                                                  |
-| ------------- | --------------------------------- | --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| `/`           | **SSG** (+ a tiny **CSR** widget) | Static intro + a small search box that fetches and shows just **5** results client-side | `https://hn.algolia.com/api/v1/search?query=<q>&tags=story&hitsPerPage=5` |
-| `/top-news`   | **ISR** (`revalidate: 600`)       | Top **10** stories (title + points + author + time)                                     | `https://hn.algolia.com/api/v1/search?tags=story&hitsPerPage=10`          |
-| `/story/[id]` | **SSR**                           | A single story’s title, link, points, author, and **up to 3 comments**                  | `https://hn.algolia.com/api/v1/items/<id>`                                |
+```markdown
+# Next.js Assignments — Tech News & MF Dashboard
 
-Use `http://codinggita.com/` as a fallback link if a story has no URL.
+This repository contains two mini-assignments built with **Next.js + Material UI**,  
+focusing on learning rendering patterns (CSR, SSR, SSG, ISR) and dual-router setups.
 
 ---
 
-## Exact to-dos, per route
+## 📌 Contents
 
-### 1) `/` — Home (SSG) + Tiny CSR widget
+### Assignment 1 — Tech News
+- Simple Hacker News client.
+- Shows SSG, ISR, SSR, CSR in action.
+- Routes:
+  - `/`
+  - `/top-news`
+  - `/story/[id]`
 
-* **SSG:** Pure static content explaining (in 1–2 lines each) CSR, SSR, SSG, ISR in your words.
-* **Links:** Buttons to `/top-news` and a sample `/story/38600909` (or any valid id).
-* **CSR widget (super small):**
-
-  * Input field + “Search” button.
-  * On click, client-side `fetch` to
-    `https://hn.algolia.com/api/v1/search?query=<q>&tags=story&hitsPerPage=5`
-  * Render a **simple list** (title only). No pagination, no sorting.
-  * Loading text: “Searching…”
-  * If no results: “No results.”
-
-### 2) `/top-news` — Top 10 (ISR)
-
-* **Rendering:** Server component; `export const revalidate = 600`.
-* **Fetch:**
-  `https://hn.algolia.com/api/v1/search?tags=story&hitsPerPage=10`
-* **Render:** For each hit show:
-
-  * **Title** (link to external URL; if missing, use `http://codinggita.com/`).
-  * **Small line:** `points • author • time-ago`.
-* **Link each item** to `/story/[objectID]`.
-
-### 3) `/story/[id]` — Details (SSR)
-
-* **Rendering:** `export const dynamic = 'force-dynamic'`.
-* **Fetch:**
-  `https://hn.algolia.com/api/v1/items/<id>`
-* **Render:**
-
-  * Title (external link or `http://codinggita.com/` fallback).
-  * `points • author • time-ago`
-  * First **3 comments** (plain text; skip HTML formatting).
-* If fetch fails or item missing → show a friendly message on the page (keep it simple; you can add `not-found.tsx` later if you want, but it’s optional here).
+### Assignment 2 — Dual Router MF Dashboard
+- Mutual Funds dashboard.
+- Demonstrates App Router + Pages Router in same project.
+- Includes 8 reusable components.
+- Routes:
+  - `/learn/funds`, `/learn/funds/[id]`, `/learn/compare`
+  - `/market/trending`, `/market/[id]`
 
 ---
 
-## Minimal UI brief (Material, mobile-first)
+## ✅ Learning Goals
 
-* Use MUI with a basic theme (light only is fine).
-* **Mobile first:** single column everywhere.
-* Cards/list items can be very plain:
-
-  * Title as clickable `Link`.
-  * Small grey secondary text underneath.
-* Keep padding and spacing comfortable, but **no complex layouts or grids**.
+- Understand different **Next.js rendering strategies**.  
+- Learn to set up **API data fetching** in multiple ways.  
+- Practice **MUI components**, skeletons, and empty states.  
+- Experience mixing **App Router** and **Pages Router** in one project.  
 
 ---
 
-## Acceptance checklist (tight and doable)
+## ⚡ Tech Stack
 
-* `/` renders **without any fetch** until the user clicks the “Search” button.
-* The CSR widget on `/` shows up to **5** results (title only) and handles “Loading…” + “No results”.
-* `/top-news` uses **ISR (10 minutes)** and lists exactly **10** stories with a secondary info line.
-* Clicking a story goes to `/story/[id]`, which **SSR** renders the core info + up to **3** comments.
-* Fallback external link used when `url` is missing.
+- Next.js  
+- React  
+- Material UI (MUI)  
+- Hacker News API + MFAPI  
 
----# Assignment_solution
+---
+
+## 🚀 How to Run
+
+```bash
+# Install dependencies
+npm install
+
+# Start dev server
+npm run dev
